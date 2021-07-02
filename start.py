@@ -279,6 +279,28 @@ def assemble(f):
         elif(x[0:4]=="ACI " and ishex(x[4:6]) and x[6]=="H"):
             bit.append(int('11001110',2))
             bit.append(int(x[4:6],16))
+        elif(x[0:4]=="DAD "):
+            if(x[4]=="B"):
+                bit.append(int('00001001',2))
+            elif(x[4]=="D"):
+                bit.append(int('00011001',2))
+            elif(x[4]=="H"):
+                bit.append(int('00101001',2))
+            elif(x[4:6]=="SP"):
+                bit.append(int('00111001',2))
+            else:
+                raise Exception(f"LINE {cnt} DAD HERE({x[4]})")
+        elif(x[0:4]=="SUB " and x[4] in reg or x[4]=="M"):
+            bit.append(int('10010000',2) + rhex(x[4]))
+        elif(x[0:4]=="SBB " and x[4] in reg or x[4]=="M"):
+            bit.append(int('10011000',2) + rhex(x[4]))
+        elif(x[0:4]=="SUI " and ishex(x[4:6]) and x[6]=="H"):
+            bit.append(int('11010110',2))
+            bit.append(int(x[4:6],16))
+        elif(x[0:4]=="SBI " and ishex(x[4:6]) and x[6]=="H"):
+            bit.append(int('11011110',2))
+            bit.append(int(x[4:6],16))
+        
         else:
             raise Exception(f"LINE {cnt} Wrong Statement")
 
