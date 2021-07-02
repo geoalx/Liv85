@@ -66,12 +66,12 @@ def assemble(f):
             elif(x[4]=="H"):
                 bit.append(int('0010001',2))
             else:
-                raise Exception(f"LXI HERE({x[4]})")
+                raise Exception(f"LINE {cnt} LXI HERE({x[4]})")
             if(x[10]=="H" and ishex(x[6:8]) and ishex(x[8:10])):
                 bit.append(int(x[8:10],16))
                 bit.append(int(x[6:8],16))
             else:
-                raise Exception(f"LXI {x[4]},HERE({x[6:10]})")
+                raise Exception(f"LINE {cnt} LXI {x[4]},HERE({x[6:10]})")
         else:
             raise Exception(f"LINE {cnt} Wrong Statement")
 
