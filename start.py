@@ -256,6 +256,29 @@ def assemble(f):
             bit.append(int('11100100',2))
             bit.append(int(labels[x[4:-1]][2:],16))
             bit.append(int(labels[x[4:-1]][:2],16))
+        elif(x[0:4]=="RST " and x[4]>="0" and x[4]<="7"):
+            temp = int(x[4])
+            bit.append(int('11000111',2)+ (temp<<3))
+        elif(x[0:3]=="IN " and ishex(x[3:5]) and x[5]=="H"):
+            bit.append(int('11011011',2))
+            bit.append(int(x[3:5],16))
+        elif(x[0:4]=="OUT " and ishex(x[4:6]) and x[6]=="H"):
+            bit.append(int('11010011',2))
+            bit.append(int(x[4:6],16))
+        elif(x[0:4]== "INR " and x[4] in reg or x[4]=="M"):
+            bit.append(int('00000100',2) + (rhex(x[4])<<3))
+        elif(x[0:4]=="DCR " and x[4] in reg or x[4]=="M"):
+            bit.append(int('00000101',2)+ (rhex(x[4])<<3))
+        elif(x[0:4]=="ADD " and x[4] in reg or x[4]=="M"):
+            bit.append(int('10000000',2)+ rhex(x[4]))
+        elif(x[0:4]=="ADC " and x[4] in reg or x[4]=="M"):
+            bit.append(int('10001000',2)+ rhex(x[4]))
+        elif(x[0:4]=="ADI " and ishex(x[4:6]) and x[6]=="H"):
+            bit.append(int('11000110',2))
+            bit.append(int(x[4:6],16))
+        elif(x[0:4]=="ACI " and ishex(x[4:6]) and x[6]=="H"):
+            bit.append(int('11001110',2))
+            bit.append(int(x[4:6],16))
         else:
             raise Exception(f"LINE {cnt} Wrong Statement")
 
