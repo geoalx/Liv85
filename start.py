@@ -4,7 +4,7 @@ import re
 if(len(sys.argv)<=1):
     raise Exception("file not inserted")
 elif(sys.argv[1][-4:] != ".asm"):
-    raise Exception("file not supported or empty")
+    raise Exception("file not supported")
 
 with open(sys.argv[1],"r") as f:
     instr = f.readlines()
@@ -47,6 +47,11 @@ def assemble(f):
     bit = []
     cnt = 1
     labels = {}
+    for x in f:
+        if(x[0]<="Z" and x[0]>="A" and x[-2]==":"):
+            labels[x[:-2]]=fhex(cnt)
+        cnt += 1
+    cnt = 1
     for x in f:
         if(x=="\n"):
             cnt += 1
@@ -193,8 +198,9 @@ def assemble(f):
                 bit.append(int('00111011',2))
             else:
                 raise Exception(f"LINE {cnt} DCX HERE({x[4]})")
-        elif(x[0]<="Z" and x[0]>="A" and x[-2]==":"):
-            labels[x[:-2]]=fhex(cnt)
+        elif(x[0]<="Z" and x[0]>="A" and x[-2]==":" and x[:-2] in labels):
+            cnt += 1
+            continue
         elif(x[0:4]=="JMP " and x[4:-1] in labels):
             bit.append(int('11000011',2))
             bit.append(int(labels[x[4:-1]][2:],16))
@@ -355,8 +361,16 @@ def assemble(f):
             raise Exception(f"LINE {cnt} Wrong Statement")
 
         cnt +=1
-    print(*labels)
     return bit
 
 ans = assemble(instr)
-print(*ans)
+res = [hex(i)[2:] for i in ans]
+with open(sys.argv[1][:-4]+".txt","a") as f:
+    cnt = 0
+    for i in res:
+        t = hex(cnt)
+        f.write('0'*(6-len(t)) + t[2:].upper())
+        f.write(":")
+        f.write(i)
+        f.write("\n")
+        cnt +=1
