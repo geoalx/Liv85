@@ -56,6 +56,22 @@ def assemble(f):
                     raise Exception(f"LINE {cnt} MVI {x[4]},HERE({x[6:8]})")
             else:
                 raise Exception(f"LINE {cnt} MVI HERE({x[4]})")
+        elif(x[0:3]=="NOP" and x[3:5]=="\n"):
+            bit.append(0)
+        elif(x[0:4]=="LXI " and x[5]==","):
+            if(x[4]=="B"):
+                bit.append(1)
+            elif(x[4]=="D"):
+                bit.append(int('00010001',2))
+            elif(x[4]=="H"):
+                bit.append(int('0010001',2))
+            else:
+                raise Exception(f"LXI HERE({x[4]})")
+            if(x[10]=="H" and ishex(x[6:8]) and ishex(x[8:10])):
+                bit.append(int(x[8:10],16))
+                bit.append(int(x[6:8],16))
+            else:
+                raise Exception(f"LXI {x[4]},HERE({x[6:10]})")
         else:
             raise Exception(f"LINE {cnt} Wrong Statement")
 
