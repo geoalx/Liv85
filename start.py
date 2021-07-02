@@ -24,12 +24,14 @@ def fhex(n):
 
 def rhex(r):
     if(r=="A"):
-        return int('000',2)
+        return int('111',2)
     elif(r=="B"):
-        return int('001',2)
+        return int('000',2)
     elif(r=="C"):
-        return int('010',2)
+        return int('001',2)
     elif(r=="D"):
+        return int('010',2)
+    elif(r=="E"):
         return int('011',2)
     elif(r=="H"):
         return int('100',2)
@@ -41,11 +43,14 @@ def rhex(r):
 
 
 def assemble(f):
-    reg = "ABCDHL"
+    reg = "ABCDEHL"
     bit = []
     cnt = 1
     labels = {}
     for x in f:
+        if(x=="\n"):
+            cnt += 1
+            continue
         print(x[:-1])
         if(x[0:4] == "MOV " and x[5]==","):
             if(x[4] in reg or x[4]=="M"):
@@ -64,18 +69,34 @@ def assemble(f):
                     raise Exception(f"LINE {cnt} MVI {x[4]},HERE({x[6:8]})")
             else:
                 raise Exception(f"LINE {cnt} MVI HERE({x[4]})")
+        elif(x[0:2]=="EI" and x[2:4]=="\n"):
+            bit.append(int('11111011',2))
+        elif(x[0:2]=="DI" and x[2:4]=="\n"):
+            bit.append(int('11110011',2))
+        elif(x[0:3]=="HLT" and x[3:5]=="\n"):
+            bit.append(int('01110110',2))
+        elif(x[0:3]=="RIM" and x[3:5]=="\n"): #ONLY ON 8085AH
+            bit.append(int('00100000',2))
+        elif(x[0:3]=="SIM" and x[3:5]=="\n"): #ONLY ON 8085AH
+            bit.append(int('00110000',2))
         elif(x[0:3]=="NOP" and x[3:5]=="\n"):
             bit.append(0)
-        elif(x[0:3]=="RLC"):
+        elif(x[0:3]=="RLC" and x[3:5]=="\n"):
             bit.append(int('00000111',2))
-        elif(x[0:3]=="RRC"):
+        elif(x[0:3]=="RRC" and x[3:5]=="\n"):
             bit.append(int('00001111',2))
-        elif(x[0:3]=="RAL"):
+        elif(x[0:3]=="RAL" and x[3:5]=="\n"):
             bit.append(int('00010111',2))
-        elif(x[0:3]=="RAR"):
+        elif(x[0:3]=="RAR" and x[3:5]=="\n"):
             bit.append(int('00011111',2))
-        elif(x[0:3]=="CMA"):
+        elif(x[0:3]=="CMA" and x[3:5]=="\n"):
             bit.append(int('00101111',2))
+        elif(x[0:3]=="STC" and x[3:5]=="\n"):
+            bit.append(int('00110111',2))
+        elif(x[0:3]=="CMC" and x[3:5]=="\n"):
+            bit.append(int('00111111',2))
+        elif(x[0:3]=="DAA" and x[3:5]=="\n"):
+            bit.append(int('00100111',2))
         elif(x[0:4]=="LXI " and x[5]==","):
             if(x[4]=="B"):
                 bit.append(1)
