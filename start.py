@@ -66,6 +66,16 @@ def assemble(f):
                 raise Exception(f"LINE {cnt} MVI HERE({x[4]})")
         elif(x[0:3]=="NOP" and x[3:5]=="\n"):
             bit.append(0)
+        elif(x[0:3]=="RLC"):
+            bit.append(int('00000111',2))
+        elif(x[0:3]=="RRC"):
+            bit.append(int('00001111',2))
+        elif(x[0:3]=="RAL"):
+            bit.append(int('00010111',2))
+        elif(x[0:3]=="RAR"):
+            bit.append(int('00011111',2))
+        elif(x[0:3]=="CMA"):
+            bit.append(int('00101111',2))
         elif(x[0:4]=="LXI " and x[5]==","):
             if(x[4]=="B"):
                 bit.append(1)
@@ -300,7 +310,26 @@ def assemble(f):
         elif(x[0:4]=="SBI " and ishex(x[4:6]) and x[6]=="H"):
             bit.append(int('11011110',2))
             bit.append(int(x[4:6],16))
-        
+        elif(x[0:4]=="ANA " and x[4] in reg or x[4]=="M"):
+            bit.append(int('10100000',2) + rhex(x[4]))
+        elif(x[0:4]=="XRA " and x[4] in reg or x[4]=="M"):
+            bit.append(int('10101000',2)+ rhex(x[4]))
+        elif(x[0:4]=="ORA " and x[4] in reg or x[4]=="M"):
+            bit.append(int('10110000',2) + rhex(x[4]))
+        elif(x[0:4]=="CMP " and x[4] in reg or x[4]=="M"):
+            bit.append(int('10111000',2) + rhex(x[4]))
+        elif(x[0:4]=="ANI " and ishex(x[4:6]) and x[6]=="H"):
+            bit.append(int('11100110',2))
+            bit.append(int(x[4:6],16))
+        elif(x[0:4]=="XRI " and ishex(x[4:6]) and x[6]=="H"):
+            bit.append(int('11101110',2))
+            bit.append(int(x[4:6],16))
+        elif(x[0:4]=="ORI " and ishex(x[4:6]) and x[6]=="H"):
+            bit.append(int('11110110',2))
+            bit.append(int(x[4:6],16))
+        elif(x[0:4]=="CPI " and ishex(x[4:6]) and x[6]=="H"):
+            bit.append(int('11111110',2))
+            bit.append(int(x[4:6],16))
         else:
             raise Exception(f"LINE {cnt} Wrong Statement")
 
