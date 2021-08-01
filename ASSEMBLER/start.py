@@ -1,5 +1,5 @@
 import sys
-import re
+import helper
 
 if(len(sys.argv)<=1):
     raise Exception("file not inserted")
@@ -45,13 +45,9 @@ def rhex(r):
 def assemble(f):
     reg = "ABCDEHL"
     bit = []
-    cnt = 1
-    labels = {}
-    for x in f:
-        if(x[0]<="Z" and x[0]>="A" and x[-2]==":"):
-            labels[x[:-2]]=fhex(cnt)
-        cnt += 1
-    cnt = 1
+    cnt = 0
+    labels = helper.labels(f)
+    cnt = 0
     for x in f:
         if(x=="\n"):
             cnt += 1
@@ -189,7 +185,7 @@ def assemble(f):
                 raise Exception(f"LINE {cnt} INX HERE({x[4]})")
         elif(x[0:4]=="DCX "):
             if(x[4]=="B"):
-                bit.append(int('00000011',2))
+                bit.append(int('00001011',2))
             elif(x[4]=="D"):
                 bit.append(int('00011011',2))
             elif(x[4]=="H"):

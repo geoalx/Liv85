@@ -12,6 +12,7 @@ led = Pin(25,Pin.OUT)
 
 addr_pin = [28,27,26,22,21,20,19,18,17,16,15]
 data_pin = [7,8,9,10,11,12,13,14]
+data_pin.reverse()
 
 for i in data_pin:
     pind.append(Pin(i,Pin.OUT))
@@ -29,7 +30,7 @@ for i in data:
     
 def delete():
     for i in range(1000):
-        write(hex(i)[2:],"ff")
+        write(hex(i)[2:],"00")
 
 def normd(d):
     if(len(d)<10):
@@ -43,7 +44,7 @@ def norma(a):
 def topins(addr,data):
     bdata = normd(bin(int(data,16)))
     baddr = norma(bin(int(addr,16)))
-    print((baddr,bdata))
+    #print((baddr,bdata))
     bit_addr = baddr[7:]
     for i in range(10,-1,-1):
         if(bit_addr[10-i]=='0'):
@@ -58,13 +59,17 @@ def topins(addr,data):
             pind[i].on()
 
 def write(addr,data):
+    #print((addr,data))
     topins(addr,data)
     led.toggle()
     we.toggle()
     time.sleep_us(1)
-    we.toggle()
+    we.toggle() 
     led.toggle()
 
+print("deleting...")
 delete()
+print("writing...")
 for key in dbit:
     write(key,dbit[key])
+print("DONE")
