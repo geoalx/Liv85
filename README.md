@@ -41,7 +41,7 @@ The critical improvements that will be implemented and added soon in the script 
 
 ## WRITER
 
-(Schematics and PCB gerber files will be added soon)
+![writer](/WRITER/sch_img.png)
 
 The EEPROM model that is beeing used for this project is **Atmel AT28C16**.
 
