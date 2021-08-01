@@ -1,7 +1,7 @@
 # 8085-ASSEMBLER
 Python Assembler for 8085 with the option of programming an EEPROM using a raspberry pi Pico.
 
-[![built with Python3](https://img.shields.io/badge/built%20with-Python3-red.svg)](https://www.python.org/) [![built with Raspberry Pi Pico](https://img.shields.io/badge/built%20with-Raspberry%20Pi%20Pico-blue)](https://www.raspberrypi.org/products/raspberry-pi-pico/)
+[![built with Python3](https://img.shields.io/badge/built%20with-Python3-red.svg)](https://www.python.org/) [![built with Raspberry Pi Pico](https://img.shields.io/badge/built%20with-Raspberry%20Pi%20Pico-blue)](https://www.raspberrypi.org/products/raspberry-pi-pico/) [![built with Intel 8085](https://img.shields.io/badge/built%20with-Intel%208085-orange)](https://el.wikipedia.org/wiki/Intel_8085)
 
 ## ASSEMBLER
 
