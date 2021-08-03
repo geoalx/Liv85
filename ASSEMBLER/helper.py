@@ -33,7 +33,7 @@ def labels(f):
             cnt+=3
         elif(x[0:2]=="CC" or x[0:2]=="CZ" or (x[0:2]=="CP" and x[2] != "I") or x[0:2]=="CM"):
             cnt+=3
-        elif(x[0:2]=="IN"):
+        elif(x[0:2]=="IN" and x[2]!="R"):
             cnt+=2
         elif(x[0:3]=="OUT"):
             cnt+=2
