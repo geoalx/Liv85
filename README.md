@@ -35,7 +35,7 @@ MOV A,B
 want to start the programm in the ```0800H``` address you should set the variable ```cnt``` to ```2048``` in the scripts mentioned above.
 
 The critical improvements that will be implemented and added soon in the script is the following:
-- [ ] Comment Support.
+- [x] Comment Support.
 - [ ] Automated Interrupt and Vector Address handling.
 - [ ] Better User Interaction.
 
