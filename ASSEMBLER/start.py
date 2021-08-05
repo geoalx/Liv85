@@ -15,7 +15,7 @@ with open(sys.argv[1],"r") as f:
             while (x[i]==" "):
                 i -=1
                 continue
-            instr.append(x[:i+1])
+            instr.append(x[:i+2])
         else:
             i = -2
             while (x[i]==" "):
