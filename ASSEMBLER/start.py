@@ -6,8 +6,22 @@ if(len(sys.argv)<=1):
 elif(sys.argv[1][-4:] != ".asm"):
     raise Exception("file not supported")
 
+instr = []
+
 with open(sys.argv[1],"r") as f:
-    instr = f.readlines()
+    for x in f.readlines():
+        if(";" in x):
+            i = x.index(";")-1
+            while (x[i]==" "):
+                i -=1
+                continue
+            instr.append(x[:i+1])
+        else:
+            i = -2
+            while (x[i]==" "):
+                i -=1
+                continue
+            instr.append(x[:i+1]+"\n")
 
 def ishex(ch):
     if((ch[0]<="9" and ch[0]>="0") or (ch[0]<="F" and ch[0]>="A")):
