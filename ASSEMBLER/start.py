@@ -15,14 +15,14 @@ with open(sys.argv[1],"r") as f:
             while (x[i]==" "):
                 i -=1
                 continue
-            instr.append(x[:i+2])
+            instr.append(x[:i+1]+"\n")
         else:
             i = -2
             while (x[i]==" "):
                 i -=1
                 continue
             instr.append(x[:i+1]+"\n")
-
+            
 def ishex(ch):
     if((ch[0]<="9" and ch[0]>="0") or (ch[0]<="F" and ch[0]>="A")):
         if((ch[1]<="9" and ch[1]>="0") or (ch[1]<="F" and ch[1]>="A")):
