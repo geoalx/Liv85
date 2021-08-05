@@ -21,8 +21,6 @@ which later can be used by the EEPROM writer.
 
   Because this is the first release so it is absolutely not a finished project, some compromises must be made. So in order for the assembler to work the following instructions
 must be taken into consideration:
-- Comments are not allowed (they will be added in a future release soon :3 )
-- All the instructions must not have spaces after the end of the instructions (must be a new line after the end of the instruction)
 - All the instructions with 1 parameter must have an ONLY 1 SPACE distance from the instruction as the following example.
 ```
 CPI 03H
@@ -35,7 +33,7 @@ MOV A,B
 want to start the programm in the ```0800H``` address you should set the variable ```cnt``` to ```2048``` in the scripts mentioned above.
 
 The critical improvements that will be implemented and added soon in the script is the following:
-- [ ] Comment Support.
+- [x] Comment Support.
 - [ ] Automated Interrupt and Vector Address handling.
 - [ ] Better User Interaction.
 
