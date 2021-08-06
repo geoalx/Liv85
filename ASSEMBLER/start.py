@@ -184,8 +184,14 @@ def assemble(f):
             bit.append(int('11100011',2))
         elif(x[0:4]=="SPHL"):
             bit.append(int('11111001',2))
-        elif(x[:6]=="LXI SP"):
+        elif(x[:6]=="LXI SP" and x[6]==","):
             bit.append(int('00110001',2))
+            if(x[11]=="H" and ishex(x[7:9]) and ishex(x[9:11])):
+                bit.append(int(x[9:11],16))
+                bit.append(int(x[7:9],16))
+            else:
+                raise Exception(f"LINE {cnt} LXI SP,HERE({x[7:11]})")
+
         elif(x[0:4]=="INX "):
             if(x[4]=="B"):
                 bit.append(3)
