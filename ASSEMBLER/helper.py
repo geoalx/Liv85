@@ -43,6 +43,8 @@ def labels(f):
             cnt+=2
         elif(x[0:3]=="SBI" or x[0:3]=="SUI" or x[0:3]=="ANI" or x[0:3]=="XRI" or x[0:3]=="ORI" or x[0:3]=="CPI"):
             cnt+=2
+        elif(x[0:4]==".ORG" and x[9]=="H"):
+            cnt = int(x[5:9],16)
         elif(x=="\n"):
             continue
         else:

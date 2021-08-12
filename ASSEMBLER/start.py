@@ -10,6 +10,8 @@ instr = []
 
 with open(sys.argv[1],"r") as f:
     for x in f.readlines():
+        if(x=="\n"):
+            continue
         if(";" in x):
             i = x.index(";")-1
             while (x[i]==" "):
@@ -373,6 +375,8 @@ def assemble(f):
         elif(x[0:4]=="CPI " and ishex(x[4:6]) and x[6]=="H"):
             bit.append(int('11111110',2))
             bit.append(int(x[4:6],16))
+        elif(x[0:5]==".ORG " and ishex(x[5:7]) and ishex(x[7:9]) and x[9]=="H"):
+            bit.append("#"+str(int(x[5:9],16)))
         else:
             raise Exception(f"LINE {cnt} Wrong Statement")
 
@@ -380,10 +384,13 @@ def assemble(f):
     return bit
 
 ans = assemble(instr)
-res = [hex(i)[2:] for i in ans]
+res = [hex(i)[2:] if type(i) == int else i for i in ans]
 with open(sys.argv[1][:-4]+".txt","a") as f:
     cnt = 0
     for i in res:
+        if(i[0]=="#"):
+            cnt = int(i[1::])
+            continue
         t = hex(cnt)
         f.write('0'*(6-len(t)) + t[2:].upper())
         f.write(":")
