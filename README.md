@@ -29,8 +29,11 @@ CPI 03H
 ```
 MOV A,B
 ```
-- The programm is stored using the ```0000H``` as starting address.To change that you should change the variable ```cnt``` in the ```start.py``` and ```helper.py``` sccripts. For excample if you 
-want to start the programm in the ```0800H``` address you should set the variable ```cnt``` to ```2048``` in the scripts mentioned above.
+- The programm is stored using the ```0000H``` as starting address.To change that you should add ```.ORG``` to your code and the target address.This function works like the following example.
+
+```
+.ORG 0800H ;From this point data is stored after 0800H address.
+```
 
 The critical improvements that will be implemented and added soon in the script is the following:
 - [x] Comment Support.
