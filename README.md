@@ -1,5 +1,5 @@
-# 8085-ASSEMBLER
-Python Assembler for 8085 with the option of programming an EEPROM using a raspberry pi Pico.
+# Liv85 Project
+A complete system based on Intel 8085 CPU that is focused on learning and for basic understanding of the digital systems. This project includes an EEPROM assembler and writer written in Python 3 and a Raspberry Pi pico is also used in order to write the machine code into the EEPROM.
 
 [![built with Python3](https://img.shields.io/badge/built%20with-Python3-red.svg)](https://www.python.org/) [![built with Raspberry Pi Pico](https://img.shields.io/badge/built%20with-Raspberry%20Pi%20Pico-blue)](https://www.raspberrypi.org/products/raspberry-pi-pico/) [![built with Intel 8085](https://img.shields.io/badge/built%20with-Intel%208085-orange)](https://el.wikipedia.org/wiki/Intel_8085)
 
@@ -37,7 +37,7 @@ MOV A,B
 
 The critical improvements that will be implemented and added soon in the script is the following:
 - [x] Comment Support.
-- [ ] Automated Interrupt and Vector Address handling.
+- [x] Automated Interrupt and Vector Address handling.
 - [ ] Better User Interaction.
 
 ## WRITER
