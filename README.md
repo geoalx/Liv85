@@ -79,3 +79,32 @@ cp (YOUR_FILE).txt /pyboard/ask.txt
 After that you can connect the EEPROM to the pico as show in the schematic and run ```writer.py``` script using Thonny. Further instructions can be seen [here](https://www.youtube.com/watch?v=_ouzuI_ZPLs).
 
 **In a future release there will be an automated shell script for Linux that automates all the above process.**
+
+## 8085-SYSTEM
+
+The given 8085 based system is a proof of concept of the power of the 8-bit electronics. At this time the system supports 8 leds for output, 8 dip-switches for input, an LCD display and a arduino driven keyboard (which is currently using the keyboard of the external PC but a PS/2 style keyboard will be added in the near future).
+
+The parts of the current system is the following:
+- 1xIntel 8085AH CPU
+- 1xAtmel AT28C16 EEPROM
+- 1xHitachi HM62256ALP DRAM
+- 8xLEDs
+- 1x8port dip switch
+- 6x 74ls373 8bit octal latch
+- 3x 74hc32 4 2-input OR gates
+- 3x 73ls08 4 2-input AND gates
+- 1x 74hc154 4 to 16 MUX
+- 1x 74ls00 4 2-input NAND gates
+- 1x 74ls04 hex inverter
+- 1x 2 line LCD display (2x16)
+- 22x 330Ω Resistors
+- 1x 10K linear variable resistor
+- Custom Arduino script that sends the keyboard data (included in the ```SYSTEM``` folder)
+
+A (really messy :cry:) prototype of this project made with breadboards is presented below:
+![prototype](/SYSTEM/PROTOTYPE.jpg)
+(dip switches have been removed from the prototype due to a small technical issue but can the connections can be found in the detailed schematic in ```SYSTEM``` folder)
+
+Example codes running on this prototype system and also a very early version of an OS I am building can be shown in the ```CODES``` folder.
+
+***This project is actively updating and all of this information is not necessary will be included in a future release***
