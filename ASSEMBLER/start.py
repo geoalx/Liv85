@@ -8,6 +8,7 @@ elif(sys.argv[1][-4:] != ".asm"):
 
 instr = []
 
+#test
 with open(sys.argv[1],"r") as f:
     for x in f.readlines():
         if(x=="\n"):
