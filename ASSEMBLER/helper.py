@@ -6,7 +6,6 @@ def fhex(n):
     return num[2:]
 
 
-#he
 def labels(f):
     lab = {}
     cnt = 0
