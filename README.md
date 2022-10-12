@@ -107,4 +107,9 @@ A (really messy :cry:) prototype of this project made with breadboards is presen
 
 Example codes running on this prototype system and also a very early version of an OS I am building can be shown in the ```CODES``` folder.
 
+A basic schematic of this system can be seen below and it is also attached to the ```SCHMATICS``` folder along with the ***gerber files for the eeprop programmer pcb and the PC pcb***
+
+![pc schematic](/SCHEMATICS/Schematic_8085_2022-10-12.png)
+
+
 ***This project is actively updating and all of this information is not necessary will be included in a future release***
