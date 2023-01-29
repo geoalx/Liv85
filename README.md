@@ -3,6 +3,8 @@ A complete system based on Intel 8085 CPU that is focused on learning and for ba
 
 [![built with Python3](https://img.shields.io/badge/built%20with-Python3-red.svg)](https://www.python.org/) [![built with Raspberry Pi Pico](https://img.shields.io/badge/built%20with-Raspberry%20Pi%20Pico-blue)](https://www.raspberrypi.org/products/raspberry-pi-pico/) [![built with Intel 8085](https://img.shields.io/badge/built%20with-Intel%208085-orange)](https://el.wikipedia.org/wiki/Intel_8085)
 
+<a href="https://www.buymeacoffee.com/geoalx" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
 ## ASSEMBLER
 
   The assembler supports code written using 8085 (all versions) instruction set in a ```.asm``` file. Then, with the following instruction:
